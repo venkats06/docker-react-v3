@@ -9,7 +9,7 @@ script:
 
 after_success:
   - docker build -t venkats1/docker-react-client ./client
-  - docker build -t venkats1/docker-react-server ./server
+  - docker build -t venkats1/docker-react-server ./Server
   - docker build -t venkats1/docker-react-worker ./worker
   - docker build -t venkats1/docker-react-nginx ./nginx
   - echo "$DOCKER_PWD" | docker login -u "$DOCKER_ID" --password-stdin
