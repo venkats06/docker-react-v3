@@ -1,0 +1,19 @@
+sudo: required
+services:
+  - docker
+before_install:
+  - docker build -t venkats1/docker-react-v2 -f ./client/Dockerfile.dev ./client
+
+script:
+  - docker run -e CI=true venkats1/docker-react-v2 npm test
+
+after_success:
+  - docker build -t venkats1/docker-react-client ./client
+  - docker build -t venkats1/docker-react-server ./server
+  - docker build -t venkats1/docker-react-worker ./worker
+  - docker build -t venkats1/docker-react-nginx ./nginx
+  - echo "$DOCKER_PWD" | docker login -u "$DOCKER_ID" --password-stdin
+  - docker push venkats1/docker-react-client
+  - docker push venkats1/docker-react-server
+  - docker push venkats1/docker-react-worker
+  - docker push venkats1/docker-react-nginx
