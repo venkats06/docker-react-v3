@@ -3,11 +3,11 @@ services:
   client:
     image: venkats1/docker-react-client
     mem_limit: 128m
-    host_name: client
+    hostname: client
   server:
     image: venkats1/docker-react-server
     mem_limit: 128m
-    host_name: api
+    hostname: api
     environment:
       - REDIS_HOST=$REDIS_HOST
       - REDIS_PORT=$REDIS_PORT
@@ -19,13 +19,13 @@ services:
   worker:
     image: venkats1/docker-react-worker
     mem_limit: 128m
-    host_name: worker
+    hostname: worker
     environment:
       - REDIS_HOST=$REDIS_HOST
       - REDIS_PORT=$REDIS_PORT
   nginx:
     image: venkats1/docker-react-nginx
-    host_name: nginx
+    hostname: nginx
     mem_limit: 128m
     ports:
       - "80:80"
