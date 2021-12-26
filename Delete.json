@@ -1,0 +1,37 @@
+{
+    "AWSEBDockerrunVerion": 2,
+    "ContainerDefinitions": [
+        {
+            "name": "client",
+            "image": "venkats1/docker-react-client",
+            "hostname": "client",
+            "esstential": false
+        },
+        {
+            "name": "server",
+            "image": "venkats1/docker-react-server",
+            "host": "api",
+            "esstential": false
+        },
+        {
+            "name": "worker",
+            "image": "venkats1/docker-react-worker",
+            "esstential": false
+        },
+        {
+            "name": "nginx",
+            "image": "venkats1/docker-react-nginx",
+            "esstential": true,
+            "portMappings": [
+                {
+                    "hostPort": 80,
+                    "containerPort": 80
+                }
+            ],
+            "links": [
+                "server",
+                "client"
+            ]
+        }
+    ]
+}

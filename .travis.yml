@@ -17,3 +17,14 @@ after_success:
   - docker push venkats1/docker-react-server
   - docker push venkats1/docker-react-worker
   - docker push venkats1/docker-react-nginx
+deploy:
+  provider: elasticbeanstalk
+  region: 'ap-south-1'
+  app:  'docker-react-v3'
+  env:  'Dockerreactv3-env'
+  bucket_name:  'elasticbeanstalk-ap-south-1-158368706475'
+  bucket_path:  'docker-react-v3'
+  on: 
+    branch: main
+  access_id: $AWS_ACCESS_ID
+  secret_access_key:  $AWS_SECRET
