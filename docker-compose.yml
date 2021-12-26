@@ -1,15 +1,13 @@
 version: '3'
 services:
   client:
-    build:
-      image: venkats1/docker-react-client
-      mem_limit: 128m
-      host_name: client
+    image: venkats1/docker-react-client
+    mem_limit: 128m
+    host_name: client
   server:
-    build:
-      image: venkats1/docker-react-server
-      mem_limit: 128m
-      host_name: api
+    image: venkats1/docker-react-server
+    mem_limit: 128m
+    host_name: api
     environment:
       - REDIS_HOST=$REDIS_HOST
       - REDIS_PORT=$REDIS_PORT
@@ -19,17 +17,15 @@ services:
       - PGPASSWORD=$PG_PASSWORD
       - PGPORT=$PG_PORT
   worker:
-    build:
-      image: venkats1/docker-react-worker
-      mem_limit: 128m
-      host_name: worker
-      environment:
-        - REDIS_HOST=$REDIS_HOST
-        - REDIS_PORT=$REDIS_PORT
+    image: venkats1/docker-react-worker
+    mem_limit: 128m
+    host_name: worker
+    environment:
+      - REDIS_HOST=$REDIS_HOST
+      - REDIS_PORT=$REDIS_PORT
   nginx:
-    build:
-      image: venkats1/docker-react-nginx
-      host_name: nginx
-      mem_limit: 128m
-      ports:
-        - "80:80"
+    image: venkats1/docker-react-nginx
+    host_name: nginx
+    mem_limit: 128m
+    ports:
+      - "80:80"
